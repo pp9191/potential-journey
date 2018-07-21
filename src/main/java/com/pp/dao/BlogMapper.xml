@@ -30,7 +30,7 @@
     insert into BLOG (ID, AUTHORID, TITLE, 
       TYPE, CONTENT, CREATEDTIME
       )
-    values (#{id,jdbcType=DECIMAL}, #{authorid,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=DECIMAL}, #{author.id,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createdtime,jdbcType=DATE}
       )
   </insert>
@@ -61,7 +61,7 @@
         #{id,jdbcType=DECIMAL},
       </if>
       <if test="authorid != null" >
-        #{authorid,jdbcType=DECIMAL},
+        #{author.id,jdbcType=DECIMAL},
       </if>
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
