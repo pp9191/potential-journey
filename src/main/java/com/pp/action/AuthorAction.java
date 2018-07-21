@@ -34,9 +34,10 @@ public class AuthorAction {
 		if(result.hasErrors()) {
 			System.out.println(false);
 			return "/WEB-INF/jsp/regAuthor.jsp";
+		}else {
+			as.regAuthor(author);
+			return "/WEB-INF/jsp/index.jsp";
 		}		
-		
-		return "/WEB-INF/jsp/index.jsp";
 	}
 	
 }
