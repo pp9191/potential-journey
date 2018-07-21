@@ -60,7 +60,7 @@
       <if test="id != null" >
         #{id,jdbcType=DECIMAL},
       </if>
-      <if test="authorid != null" >
+      <if test="author != null" >
         #{author.id,jdbcType=DECIMAL},
       </if>
       <if test="title != null" >
@@ -80,8 +80,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.pp.entity.Blog" >
     update BLOG
     <set >
-      <if test="authorid != null" >
-        AUTHORID = #{authorid,jdbcType=DECIMAL},
+      <if test="author != null" >
+        AUTHORID = #{author.id,jdbcType=DECIMAL},
       </if>
       <if test="title != null" >
         TITLE = #{title,jdbcType=VARCHAR},
@@ -100,7 +100,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pp.entity.Blog" >
     update BLOG
-    set AUTHORID = #{authorid,jdbcType=DECIMAL},
+    set AUTHORID = #{author.id,jdbcType=DECIMAL},
       TITLE = #{title,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},
       CONTENT = #{content,jdbcType=VARCHAR},
