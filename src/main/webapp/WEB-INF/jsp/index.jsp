@@ -13,7 +13,7 @@
 		<a href="author/reg.form">注册作者</a><br />
 	</c:if>
 	<c:if test="${!empty author}">
-		<a href="author/show.form">查看作者</a><br />
+		<a href="${pageContext.request.contextPath}/author/show.form">查看所有作者</a><br />
 	</c:if>
 	<a href="baidu.form">百度一下</a>
 	<p>${author.username}</p>

@@ -1,13 +1,16 @@
 package com.pp.entity;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 
 public class Author {
     private Integer id;
 
-    @Pattern(regexp="^\\S{4,30}$",message="用户名为4-30个字类字符")
+    @NotNull(message="用户名不能为空")
+    @Length(min=2,max=20,message="用户名长度在2-20之内")
     private String username;
 
     @Pattern(regexp="^\\w{6,30}$",message="密码为6-30个非空字符")
