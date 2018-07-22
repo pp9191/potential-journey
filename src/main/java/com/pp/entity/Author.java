@@ -7,13 +7,13 @@ import org.hibernate.validator.constraints.Email;
 public class Author {
     private Integer id;
 
-    @Pattern(regexp="^\\w{4,30}$",message="用户名为4-30个字类字符")
+    @Pattern(regexp="^\\S{4,30}$",message="用户名为4-30个字类字符")
     private String username;
 
-    @Pattern(regexp="^\\s{6,30}$",message="密码为6-30个非空字符")
+    @Pattern(regexp="^\\w{6,30}$",message="密码为6-30个非空字符")
     private String password;
 
-    @Pattern(regexp="^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\\\\d{8}$",message="手机号格式有误")
+    @Pattern(regexp="^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\\d{8}$",message="手机号格式有误")
     private String phone;
 
     @Email(message="邮箱格式有误")
