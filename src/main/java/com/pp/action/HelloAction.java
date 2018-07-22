@@ -9,13 +9,13 @@ import com.pp.entity.Blog;
 import com.pp.service.BlogService;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("")
 public class HelloAction {
 	
 	@Resource(name="blogService")
 	private BlogService bs;
 
-	@RequestMapping("baidu")
+	@RequestMapping("/baidu")
 	public String hello(){
 		
 		System.out.println("Hello World!");

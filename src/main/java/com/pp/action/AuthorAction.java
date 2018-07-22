@@ -26,6 +26,14 @@ public class AuthorAction {
 		return "/WEB-INF/jsp/regAuthor.jsp";
 	}
 	
+	@RequestMapping("/show")
+	public String show() {
+		
+		System.out.println("reg");
+		
+		return "/WEB-INF/jsp/showAuthor.jsp";
+	}
+	
 	@RequestMapping("/regAuthor")
 	public String regAuthor(@ModelAttribute @Validated Author author, BindingResult result) {
 		
