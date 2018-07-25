@@ -11,10 +11,11 @@ public interface BlogMapper {
     int insertSelective(Blog record);
 
     Blog selectByPrimaryKey(Integer id);
-    
-    Author selectAuthorByKey(Integer authorid);
 
     int updateByPrimaryKeySelective(Blog record);
 
     int updateByPrimaryKey(Blog record);
+    
+    Author selectAuthor(Integer authorid);
+  
 }

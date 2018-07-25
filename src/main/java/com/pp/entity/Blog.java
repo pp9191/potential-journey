@@ -5,7 +5,8 @@ import java.util.Date;
 public class Blog {
     private Integer id;
 
-    //private Integer authorid;
+//    private Integer authorid;
+    
     private Author author;
 
     private String title;
@@ -27,7 +28,7 @@ public class Blog {
 //    public Integer getAuthorid() {
 //        return authorid;
 //    }
-//
+
 //    public void setAuthorid(Integer authorid) {
 //        this.authorid = authorid;
 //    }

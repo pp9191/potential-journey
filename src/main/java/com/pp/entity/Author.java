@@ -1,40 +1,31 @@
 package com.pp.entity;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-
 public class Author {
     private Integer id;
 
-    @NotNull(message="用户名不能为空")
-    @Length(min=2,max=20,message="用户名长度在2-20之内")
     private String username;
 
-    @Pattern(regexp="^\\w{6,30}$",message="密码为6-30个非空字符")
     private String password;
 
-    @Pattern(regexp="^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\\d{8}$",message="手机号格式有误")
     private String phone;
 
-    @Email(message="邮箱格式有误")
     private String email;
 
     private String address;
 
+    private String sex;
+
+    private Short age;    
+
     public Author() {
-		// TODO Auto-generated constructor stub
 	}
-    
-    public Author(String username, String password) {
-		// TODO Auto-generated constructor stub
-    	this.username = username;
-    	this.password = password;
+
+	public Author(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
-    
-    public Integer getId() {
+
+	public Integer getId() {
         return id;
     }
 
@@ -80,5 +71,21 @@ public class Author {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public Short getAge() {
+        return age;
+    }
+
+    public void setAge(Short age) {
+        this.age = age;
     }
 }

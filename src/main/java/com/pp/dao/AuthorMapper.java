@@ -12,10 +12,10 @@ public interface AuthorMapper {
     int insertSelective(Author record);
 
     Author selectByPrimaryKey(Integer id);
-    
-    List<Author> selectAll();
 
     int updateByPrimaryKeySelective(Author record);
 
     int updateByPrimaryKey(Author record);
+
+	List<Author> selectAll();
 }

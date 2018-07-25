@@ -5,7 +5,7 @@
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="BLOGID" property="blogid" jdbcType="DECIMAL" />
     <result column="CONTENT" property="content" jdbcType="VARCHAR" />
-    <result column="CREATEDTIME" property="createdtime" jdbcType="DATE" />
+    <result column="CREATEDTIME" property="createdtime" jdbcType="TIMESTAMP" />
     <result column="CREATEDBY" property="createdby" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -14,21 +14,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from COMMENT
+    from COMMENT_
     where ID = #{id,jdbcType=DECIMAL}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from COMMENT
+    delete from COMMENT_
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="com.pp.entity.Comment" >
-    insert into COMMENT (ID, BLOGID, CONTENT, 
+    insert into COMMENT_ (ID, BLOGID, CONTENT, 
       CREATEDTIME, CREATEDBY)
     values (#{id,jdbcType=DECIMAL}, #{blogid,jdbcType=DECIMAL}, #{content,jdbcType=VARCHAR}, 
-      #{createdtime,jdbcType=DATE}, #{createdby,jdbcType=VARCHAR})
+      #{createdtime,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.pp.entity.Comment" >
-    insert into COMMENT
+    insert into COMMENT_
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -57,7 +57,7 @@
         #{content,jdbcType=VARCHAR},
       </if>
       <if test="createdtime != null" >
-        #{createdtime,jdbcType=DATE},
+        #{createdtime,jdbcType=TIMESTAMP},
       </if>
       <if test="createdby != null" >
         #{createdby,jdbcType=VARCHAR},
@@ -65,7 +65,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.pp.entity.Comment" >
-    update COMMENT
+    update COMMENT_
     <set >
       <if test="blogid != null" >
         BLOGID = #{blogid,jdbcType=DECIMAL},
@@ -74,7 +74,7 @@
         CONTENT = #{content,jdbcType=VARCHAR},
       </if>
       <if test="createdtime != null" >
-        CREATEDTIME = #{createdtime,jdbcType=DATE},
+        CREATEDTIME = #{createdtime,jdbcType=TIMESTAMP},
       </if>
       <if test="createdby != null" >
         CREATEDBY = #{createdby,jdbcType=VARCHAR},
@@ -83,10 +83,10 @@
     where ID = #{id,jdbcType=DECIMAL}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pp.entity.Comment" >
-    update COMMENT
+    update COMMENT_
     set BLOGID = #{blogid,jdbcType=DECIMAL},
       CONTENT = #{content,jdbcType=VARCHAR},
-      CREATEDTIME = #{createdtime,jdbcType=DATE},
+      CREATEDTIME = #{createdtime,jdbcType=TIMESTAMP},
       CREATEDBY = #{createdby,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=DECIMAL}
   </update>

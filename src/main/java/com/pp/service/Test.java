@@ -16,16 +16,16 @@ public class Test {
 
 		ApplicationContext ac= new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		getBlog(ac);
+		getAuthor(ac);
 	}
 
 	private static void getAuthor(ApplicationContext ac) {
 		AuthorService as = (AuthorService) ac.getBean("authorService");
 		
-//		Author author = new Author("xiaoming", "xiaoming"); 
-//		as.regAuthor(author);
-//		author = new Author("xiaohong", "xiaoming"); 
-//		as.regAuthor(author);
+		Author author = new Author("xiaoming", "xiaoming"); 
+		as.regAuthor(author);
+		author = new Author("xiaohong", "xiaoming"); 
+		as.regAuthor(author);
 		
 		List<Author> alist = as.getAllAuthor();
 		

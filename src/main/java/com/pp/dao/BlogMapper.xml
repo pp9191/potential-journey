@@ -8,19 +8,19 @@
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
     <result column="CONTENT" property="content" jdbcType="VARCHAR" />
     <result column="CREATEDTIME" property="createdtime" jdbcType="DATE" />
-    <association property="author" javaType="Author" select="selectAuthorByKey" column="authorid"></association>
+    <association property="author" column="authorid" javaType="Author" select="selectAuthor"></association>
   </resultMap>
   <sql id="Base_Column_List" >
     ID, AUTHORID, TITLE, TYPE, CONTENT, CREATEDTIME
   </sql>
+  <select id="selectAuthor" resultType="Author" parameterType="java.lang.Integer">
+  	select * from AUTHOR where ID = {authorid,jdbcType=DECIMAL}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from BLOG
     where ID = #{id,jdbcType=DECIMAL}
-  </select>
-  <select id="selectAuthorByKey" resultType="Author" parameterType="java.lang.Integer">
-  	select * from AUTHOR where id = #{authorid,jdbcType=DECIMAL}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from BLOG
@@ -60,7 +60,7 @@
       <if test="id != null" >
         #{id,jdbcType=DECIMAL},
       </if>
-      <if test="author != null" >
+      <if test="authorid != null" >
         #{author.id,jdbcType=DECIMAL},
       </if>
       <if test="title != null" >
@@ -80,7 +80,7 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.pp.entity.Blog" >
     update BLOG
     <set >
-      <if test="author != null" >
+      <if test="authorid != null" >
         AUTHORID = #{author.id,jdbcType=DECIMAL},
       </if>
       <if test="title != null" >

@@ -8,39 +8,41 @@
     <result column="PHONE" property="phone" jdbcType="VARCHAR" />
     <result column="EMAIL" property="email" jdbcType="VARCHAR" />
     <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, USERNAME, PASSWORD, PHONE, EMAIL, ADDRESS
+    ID, USERNAME, PASSWORD, PHONE, EMAIL, ADDRESS, SEX, AGE
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from AUTHOR
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from AUTHOR
     where ID = #{id,jdbcType=DECIMAL}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from AUTHOR
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from AUTHOR
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
-  <insert id="insert" parameterType="com.pp.entity.Author" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.pp.entity.Author" >
   	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
-  		select nvl(max(ID), 0) + 1 as ID from AUTHOR
+  		select nvl(max(ID),0) + 1 as ID from AUTHOR
   	</selectKey>
     insert into AUTHOR (ID, USERNAME, PASSWORD, 
-      PHONE, EMAIL, ADDRESS
-      )
+      PHONE, EMAIL, ADDRESS, 
+      SEX, AGE)
     values (#{id,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
-      )
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.pp.entity.Author" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.pp.entity.Author" >
   	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
-  		select nvl(max(ID), 0) + 1 as ID from AUTHOR
+  		select nvl(max(ID),0) + 1 as ID from AUTHOR
   	</selectKey>
     insert into AUTHOR
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -62,6 +64,12 @@
       <if test="address != null" >
         ADDRESS,
       </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="age != null" >
+        AGE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -81,6 +89,12 @@
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -102,6 +116,12 @@
       <if test="address != null" >
         ADDRESS = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
@@ -111,7 +131,9 @@
       PASSWORD = #{password,jdbcType=VARCHAR},
       PHONE = #{phone,jdbcType=VARCHAR},
       EMAIL = #{email,jdbcType=VARCHAR},
-      ADDRESS = #{address,jdbcType=VARCHAR}
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
 </mapper>
