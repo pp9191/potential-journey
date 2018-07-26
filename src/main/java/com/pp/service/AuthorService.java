@@ -14,6 +14,11 @@ public class AuthorService {
 	@Autowired
 	private AuthorMapper am;
 	
+	public Author getAuthor(String name, String password) {
+		
+		return am.selectAuthor(name, password);
+	}
+	
 	public Author getAuthorByKey(int id) {
 		
 		return am.selectByPrimaryKey(id);

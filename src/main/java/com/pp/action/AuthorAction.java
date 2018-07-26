@@ -18,12 +18,20 @@ public class AuthorAction {
 	@Resource(name="authorService")
 	private AuthorService as;
 	
+	@RequestMapping("/log")
+	public String log() {
+		
+		System.out.println("log");
+		
+		return "/WEB-INF/jsp/regAuthor.jsp";
+	}
+	
 	@RequestMapping("/reg")
 	public String reg() {
 		
 		System.out.println("reg");
 		
-		return "/WEB-INF/jsp/regAuthor.jsp";
+		return "/WEB-INF/jsp/index.jsp";
 	}
 	
 	@RequestMapping("/show")
@@ -39,13 +47,12 @@ public class AuthorAction {
 		
 		System.out.println(author.getUsername());
 		
-		if(result.hasErrors()) {
-			System.out.println(false);
-			return "/WEB-INF/jsp/regAuthor.jsp";
-		}else {
-			as.regAuthor(author);
-			return "/WEB-INF/jsp/index.jsp";
-		}		
+		if(!result.hasErrors()) {
+			if(as.regAuthor(author) > 0) {
+				return "/WEB-INF/jsp/index.jsp";			
+			}
+		}
+		System.out.println(false);
+		return "/WEB-INF/jsp/regAuthor.jsp";
 	}
-	
 }

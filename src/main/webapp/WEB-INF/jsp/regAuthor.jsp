@@ -20,7 +20,7 @@
 	<form:errors path="*" element="div" cssClass="error"></form:errors>
 	<p>姓名：<input type="text" name="username" /></p>
 	<p>密码：<input type="password" name="password" /></p>
-	<p>性别：<input type="radio" name="sex" value="男" />男 &nbsp;&nbsp;<input type="radio" name="sex" value="女" /></p>
+	<p>性别：<input type="radio" name="sex" value="男" />男 &nbsp;&nbsp;<input type="radio" name="sex" value="女" />女</p>
 	<p>年龄：<input type="number" name="age" /></p>
 	<p>手机号：<input type="text" name="phone" /></p>
 	<p>邮箱：<input type="text" name="email" /></p>

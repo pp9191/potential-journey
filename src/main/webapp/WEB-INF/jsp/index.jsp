@@ -15,7 +15,7 @@
 	<c:if test="${!empty author}">
 		<a href="${pageContext.request.contextPath}/author/show.form">查看所有作者</a><br />
 	</c:if>
-	<a href="baidu.form">百度一下</a>
+	<a href="${pageContext.request.contextPath}/baidu.form">百度一下</a>
 	<p>${author.username}</p>
 	<p>${author.phone}</p>
 	<p>${author.email}</p>

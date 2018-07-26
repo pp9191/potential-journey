@@ -2,6 +2,8 @@ package com.pp.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.pp.entity.Author;
 
 public interface AuthorMapper {
@@ -18,4 +20,6 @@ public interface AuthorMapper {
     int updateByPrimaryKey(Author record);
 
 	List<Author> selectAll();
+
+	Author selectAuthor(@Param("username") String name, @Param("password") String password);
 }

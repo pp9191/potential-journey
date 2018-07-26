@@ -1,20 +1,35 @@
 package com.pp.entity;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+
 public class Author {
     private Integer id;
 
+    @NotNull(message="用户名不能为空")
+    @Length(min=4,max=20,message="用户名长度4~20")
     private String username;
 
+    @Pattern(regexp="^.{6,20}$",message="密码应为6~20个字符")
     private String password;
 
+    @Pattern(regexp="^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$",message="手机号有误")
     private String phone;
 
+    @Email(message="邮箱有误")
     private String email;
 
     private String address;
 
     private String sex;
 
+    @Min(value=18,message="年龄最小18")
+    @Max(value=120,message="年龄最大120")
     private Short age;    
 
     public Author() {

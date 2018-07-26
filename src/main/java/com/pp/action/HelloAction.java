@@ -11,9 +11,6 @@ import com.pp.service.BlogService;
 @Controller
 //@RequestMapping("")
 public class HelloAction {
-	
-	@Resource(name="blogService")
-	private BlogService bs;
 
 	@RequestMapping("/baidu")
 	public String hello(){
@@ -27,8 +24,6 @@ public class HelloAction {
 	public String index() {
 
 		System.out.println("index.jsp");
-		Blog b = bs.getBlogByKey(1);
-		System.out.println(b.getContent());
 		
 		return "WEB-INF/jsp/index.jsp";
 	}
