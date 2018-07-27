@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pp.entity.Author;
 import com.pp.service.AuthorService;
@@ -23,15 +24,17 @@ public class AuthorAction {
 		
 		System.out.println("log");
 		
-		return "/WEB-INF/jsp/regAuthor.jsp";
+		return "/WEB-INF/jsp/log.jsp";
 	}
 	
 	@RequestMapping("/reg")
-	public String reg() {
+	public ModelAndView reg() {
 		
 		System.out.println("reg");
+		ModelAndView mv =new ModelAndView("/WEB-INF/jsp/regAuthor.jsp");
+		mv.addObject("author", new Author());
 		
-		return "/WEB-INF/jsp/index.jsp";
+		return mv;
 	}
 	
 	@RequestMapping("/show")

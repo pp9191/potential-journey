@@ -9,10 +9,10 @@
     <result column="EMAIL" property="email" jdbcType="VARCHAR" />
     <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
     <result column="SEX" property="sex" jdbcType="VARCHAR" />
-    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, USERNAME, PASSWORD, PHONE, EMAIL, ADDRESS, SEX, AGE
+    ID, USERNAME, PASSWORD, PHONE, EMAIL, ADDRESS, SEX, BIRTHDAY
   </sql>
   <select id="selectAll" resultMap="BaseResultMap" >
   	select 
@@ -39,12 +39,10 @@
   	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
   		select nvl(max(ID),0) + 1 as ID from AUTHOR
   	</selectKey>
-    insert into AUTHOR (ID, USERNAME, PASSWORD, 
-      PHONE, EMAIL, ADDRESS, 
-      SEX, AGE)
+    insert into AUTHOR (ID, USERNAME, PASSWORD, PHONE, EMAIL, ADDRESS, SEX, BIRTHDAY)
     values (#{id,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL})
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.pp.entity.Author" >
   	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
@@ -73,8 +71,8 @@
       <if test="sex != null" >
         SEX,
       </if>
-      <if test="age != null" >
-        AGE,
+      <if test="birthday != null" >
+        BIRTHDAY,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -99,8 +97,8 @@
       <if test="sex != null" >
         #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=DECIMAL},
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -125,8 +123,8 @@
       <if test="sex != null" >
         SEX = #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        AGE = #{age,jdbcType=DECIMAL},
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DECIMAL},
       </if>
     </set>
     where ID = #{id,jdbcType=DECIMAL}
@@ -139,7 +137,7 @@
       EMAIL = #{email,jdbcType=VARCHAR},
       ADDRESS = #{address,jdbcType=VARCHAR},
       SEX = #{sex,jdbcType=VARCHAR},
-      AGE = #{age,jdbcType=DECIMAL}
+      BIRTHDAY = #{birthday,jdbcType=DECIMAL}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
 </mapper>

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/My97DatePicker/WdatePicker.js"></script>
+<%-- <link href="${pageContext.request.contextPath}/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css"> --%>
 <style type="text/css">
 	.error{
 		color: red;
@@ -18,13 +20,13 @@
 <form:form modelAttribute="author" action="regAuthor.form" method="post">
 
 	<form:errors path="*" element="div" cssClass="error"></form:errors>
-	<p>姓名：<input type="text" name="username" /></p>
-	<p>密码：<input type="password" name="password" /></p>
-	<p>性别：<input type="radio" name="sex" value="男" />男 &nbsp;&nbsp;<input type="radio" name="sex" value="女" />女</p>
-	<p>年龄：<input type="number" name="age" /></p>
-	<p>手机号：<input type="text" name="phone" /></p>
-	<p>邮箱：<input type="text" name="email" /></p>
-	<p>地址：<input type="text" name="address" /></p>
+	<p>姓名：<form:input path="username" /></p>
+	<p>密码：<form:password path="password"/></p>
+	<p>性别：<form:radiobutton path="sex" value="男"/>男<form:radiobutton path="sex" value="女"/>女</p>
+	<p>生日：<input type="text" name="birthday" class="Wdate" onclick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd'})" /></p>
+	<p>手机号：<form:input path="phone" /></p>
+	<p>邮箱：<form:input path="email" /></p>
+	<p>地址：<form:input path="address" /></p>
 	<p><input type="submit" value="提交"/></p>
 	
 </form:form>

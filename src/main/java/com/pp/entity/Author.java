@@ -1,12 +1,15 @@
 package com.pp.entity;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Author {
     private Integer id;
@@ -28,9 +31,9 @@ public class Author {
 
     private String sex;
 
-    @Min(value=18,message="年龄最小18")
-    @Max(value=120,message="年龄最大120")
-    private Short age;    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    private Date birthday;  
 
     public Author() {
 	}
@@ -96,11 +99,11 @@ public class Author {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public Short getAge() {
-        return age;
-    }
+	public Date getBirthday() {
+		return birthday;
+	}
 
-    public void setAge(Short age) {
-        this.age = age;
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 }
