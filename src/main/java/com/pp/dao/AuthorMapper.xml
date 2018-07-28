@@ -14,10 +14,14 @@
   <sql id="Base_Column_List" >
     ID, USERNAME, PASSWORD, PHONE, EMAIL, ADDRESS, SEX, BIRTHDAY
   </sql>
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="int">
   	select 
     <include refid="Base_Column_List" />
-    from AUTHOR
+    from (select ROWNUM R,au.* from AUTHOR au where ROWNUM &lt;= #{end,jdbcType=DECIMAL} order by au.ID)
+    where R &gt; #{start,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAllCount" resultType="int">
+  	select count(*) from AUTHOR
   </select>
   <select id="selectAuthor" resultMap="BaseResultMap" parameterType="java.lang.String">
     select 

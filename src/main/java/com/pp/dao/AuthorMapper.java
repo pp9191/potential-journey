@@ -19,7 +19,9 @@ public interface AuthorMapper {
 
     int updateByPrimaryKey(Author record);
 
-	List<Author> selectAll();
+	List<Author> selectAll(@Param("start") int start, @Param("end") int end);
+	
+	int selectAllCount();
 
 	Author selectAuthor(@Param("username") String name, @Param("password") String password);
 }

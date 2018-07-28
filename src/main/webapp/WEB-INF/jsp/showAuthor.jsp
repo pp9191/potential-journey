@@ -11,139 +11,32 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.jqGrid.js"></script>
 </head>
 <body>
-	<table id="list4">
-
-	</table>
+	<table id="myTable"></table>
+	<div id="pager"></div>
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							jQuery("#list4").jqGrid(
-									{
-										datatype : "local",
-										height : 250,
-										colNames : [ 'Inv No', 'Date',
-												'Client', 'Amount', 'Tax',
-												'Total', 'Notes' ],
-										colModel : [ {
-											name : 'id',
-											index : 'id',
-											width : 60,
-											sorttype : "int"
-										}, {
-											name : 'invdate',
-											index : 'invdate',
-											width : 90,
-											sorttype : "date"
-										}, {
-											name : 'name',
-											index : 'name',
-											width : 100
-										}, {
-											name : 'amount',
-											index : 'amount',
-											width : 80,
-											align : "right",
-											sorttype : "float"
-										}, {
-											name : 'tax',
-											index : 'tax',
-											width : 80,
-											align : "right",
-											sorttype : "float"
-										}, {
-											name : 'total',
-											index : 'total',
-											width : 80,
-											align : "right",
-											sorttype : "float"
-										}, {
-											name : 'note',
-											index : 'note',
-											width : 150,
-											sortable : false
-										} ],
-										multiselect : true,
-										caption : "Manipulating Array Data"
-									});
-							var mydata = [ {
-								id : "1",
-								invdate : "2007-10-01",
-								name : "test",
-								note : "note",
-								amount : "200.00",
-								tax : "10.00",
-								total : "210.00"
-							}, {
-								id : "2",
-								invdate : "2007-10-02",
-								name : "test2",
-								note : "note2",
-								amount : "300.00",
-								tax : "20.00",
-								total : "320.00"
-							}, {
-								id : "3",
-								invdate : "2007-09-01",
-								name : "test3",
-								note : "note3",
-								amount : "400.00",
-								tax : "30.00",
-								total : "430.00"
-							}, {
-								id : "4",
-								invdate : "2007-10-04",
-								name : "test",
-								note : "note",
-								amount : "200.00",
-								tax : "10.00",
-								total : "210.00"
-							}, {
-								id : "5",
-								invdate : "2007-10-05",
-								name : "test2",
-								note : "note2",
-								amount : "300.00",
-								tax : "20.00",
-								total : "320.00"
-							}, {
-								id : "6",
-								invdate : "2007-09-06",
-								name : "test3",
-								note : "note3",
-								amount : "400.00",
-								tax : "30.00",
-								total : "430.00"
-							}, {
-								id : "7",
-								invdate : "2007-10-04",
-								name : "test",
-								note : "note",
-								amount : "200.00",
-								tax : "10.00",
-								total : "210.00"
-							}, {
-								id : "8",
-								invdate : "2007-10-03",
-								name : "test2",
-								note : "note2",
-								amount : "300.00",
-								tax : "20.00",
-								total : "320.00"
-							}, {
-								id : "9",
-								invdate : "2007-09-01",
-								name : "test3",
-								note : "note3",
-								amount : "400.00",
-								tax : "30.00",
-								total : "430.00"
-							} ];
-							for (var i = 0; i <= mydata.length; i++)
-								jQuery("#list4").jqGrid('addRowData', i + 1,
-										mydata[i]);
-						});
+		$(document).ready(function() {
+			jQuery("#myTable").jqGrid({
+				url: 'getAuthorPageList.form',//请求数据的地址
+				datatype: "json",
+			   	colNames:['Id','姓名', '出生日', '手机号'],
+				//jqgrid主要通过下面的索引信息与后台传过来的值对应
+			   	colModel:[
+			   		{name:'id',index:'id', width:55},
+			   		{name:'username',index:'username', width:90},
+			   		{name:'birthday',index:'birthday', width:100},
+			   		{name:'phone',index:'phone', width:100}
+			      	],
+			   	caption:"我是jqgrid的标题",
+				rowNum: 10,
+			    rowList: [ 10, 20, 30 ],
+			    pager: 'pager',
+			    sortname: 'id',
+			    recordpos: 'right',
+			    height:300,
+			    multiselect: true
+			});
+		});
 	</script>
 </body>
 </html>

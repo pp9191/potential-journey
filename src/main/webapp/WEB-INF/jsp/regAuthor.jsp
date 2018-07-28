@@ -23,7 +23,7 @@
 	<p>姓名：<form:input path="username" /></p>
 	<p>密码：<form:password path="password"/></p>
 	<p>性别：<form:radiobutton path="sex" value="男"/>男<form:radiobutton path="sex" value="女"/>女</p>
-	<p>生日：<input type="text" name="birthday" class="Wdate" onclick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd'})" /></p>
+	<p>生日：<form:input path="birthday" cssClass="Wdate" onclick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd'})" /></p>
 	<p>手机号：<form:input path="phone" /></p>
 	<p>邮箱：<form:input path="email" /></p>
 	<p>地址：<form:input path="address" /></p>

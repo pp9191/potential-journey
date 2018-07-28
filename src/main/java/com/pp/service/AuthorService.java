@@ -14,9 +14,9 @@ public class AuthorService {
 	@Autowired
 	private AuthorMapper am;
 	
-	public Author getAuthor(String name, String password) {
+	public Author getAuthor(Author au) {
 		
-		return am.selectAuthor(name, password);
+		return am.selectAuthor(au.getUsername(), au.getPassword());
 	}
 	
 	public Author getAuthorByKey(int id) {
@@ -24,9 +24,14 @@ public class AuthorService {
 		return am.selectByPrimaryKey(id);
 	}
 	
-	public List<Author> getAllAuthor(){
+	public List<Author> getAllAuthor(int start, int end){
 		
-		return am.selectAll();
+		return am.selectAll(start, end);
+	}
+	
+	public int getAllCount() {
+		
+		return am.selectAllCount();
 	}
 	
 	public int regAuthor(Author author) {
