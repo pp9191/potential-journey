@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,8 +16,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -80,26 +79,28 @@ public class AuthorAction {
 	}
 	
 	@RequestMapping("/getAuthorPageList")
-	public void getAuthorPageList(@RequestParam int rows, @RequestParam int page, HttpServletResponse resp) {
-		//rows:pageSize,page:pageIndex		
-		System.out.println(rows + "||" + page);
+	public void getAuthorPageList(HttpServletRequest req, HttpServletResponse resp) {
+			
+		int rows = Integer.parseInt(req.getParameter("rows"));//pageSize
+		int page = Integer.parseInt(req.getParameter("page"));//pageIndex
 		
 		Map<String,Object> map = new HashMap<>();
-		int total = as.getAllCount();
-		map.put("total", total);//总条数
+		int totalCount = as.getAllCount();
+		map.put("records", totalCount);//总数据条数
+		map.put("total", (totalCount - 1)/rows + 1);//总页数
 		map.put("page", page);//当前页
 		
-		if(page > 0 && page <= (total - 1)/rows + 1) {
+		if(page > 0 && page <= (totalCount - 1)/rows + 1) {
 			int start = rows * (page-1);
-			int end = rows * page >= total ? total : rows * page;
+			int end = rows * page >= totalCount ? totalCount : rows * page;
 			
 			List<Author> list = as.getAllAuthor(start, end);
 			map.put("rows", list);//数据
-			map.put("records", list.size());//数据条数
 		}
 		String jsonStr = JSON.toJSONStringWithDateFormat(map, "yyyy-MM-dd");
 		System.out.println(jsonStr);
 		try {
+			resp.setContentType("application/json; charset=utf-8"); 
 			resp.getWriter().write(jsonStr);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
