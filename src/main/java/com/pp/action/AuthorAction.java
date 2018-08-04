@@ -16,6 +16,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -79,7 +80,8 @@ public class AuthorAction {
 	}
 	
 	@RequestMapping("/getAuthorPageList")
-	public void getAuthorPageList(HttpServletRequest req, HttpServletResponse resp) {
+	@ResponseBody
+	public Map<String,Object> getAuthorPageList(HttpServletRequest req, HttpServletResponse resp) {
 			
 		int rows = Integer.parseInt(req.getParameter("rows"));//pageSize
 		int page = Integer.parseInt(req.getParameter("page"));//pageIndex
@@ -97,15 +99,16 @@ public class AuthorAction {
 			List<Author> list = as.getAllAuthor(start, end);
 			map.put("rows", list);//数据
 		}
-		String jsonStr = JSON.toJSONStringWithDateFormat(map, "yyyy-MM-dd");
-		System.out.println(jsonStr);
-		try {
-			resp.setContentType("application/json; charset=utf-8"); 
-			resp.getWriter().write(jsonStr);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String jsonStr = JSON.toJSONStringWithDateFormat(map, "yyyy-MM-dd");
+//		System.out.println(jsonStr);
+//		try {
+//			resp.setContentType("application/json; charset=utf-8"); 
+//			resp.getWriter().write(jsonStr);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		return map;
 	}
 	
 	@RequestMapping("/regAuthor")
