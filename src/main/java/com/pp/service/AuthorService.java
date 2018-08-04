@@ -24,9 +24,9 @@ public class AuthorService {
 		return am.selectByPrimaryKey(id);
 	}
 	
-	public List<Author> getAllAuthor(int start, int end){
+	public List<Author> getAllAuthor(int start, int end, String sort){
 		
-		return am.selectAll(start, end);
+		return am.selectAll(start, end, sort);
 	}
 	
 	public int getAllCount() {

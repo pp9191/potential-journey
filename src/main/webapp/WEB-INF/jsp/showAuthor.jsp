@@ -13,6 +13,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
 </head>
 <body>
+	<div>
+		<a href="reg.form" target="_blank">注册作者</a><br />
+	</div>
 	<table id="myTable"></table>
 	<div id="pager"></div>
 

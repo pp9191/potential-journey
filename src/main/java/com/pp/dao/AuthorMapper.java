@@ -19,7 +19,7 @@ public interface AuthorMapper {
 
     int updateByPrimaryKey(Author record);
 
-	List<Author> selectAll(@Param("start") int start, @Param("end") int end);
+	List<Author> selectAll(@Param("start") int start, @Param("end") int end, @Param("sort") String sort);
 	
 	int selectAllCount();
 

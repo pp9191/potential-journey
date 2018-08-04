@@ -17,8 +17,18 @@
   <select id="selectAll" resultMap="BaseResultMap" parameterType="int">
   	select 
     <include refid="Base_Column_List" />
-    from (select ROWNUM R,au.* from AUTHOR au where ROWNUM &lt;= #{end,jdbcType=DECIMAL} order by au.ID)
-    where R &gt; #{start,jdbcType=DECIMAL}
+	from (
+		select ROWNUM R,au.* from AUTHOR au where ROWNUM &lt;=#{end,jdbcType=DECIMAL} order by 
+		<choose>
+	        <when test="sort!=null">
+	            ${sort}
+	        </when>
+	        <otherwise>
+	            au.ID asc
+	        </otherwise>
+	     </choose>
+	)
+	where R &gt; #{start,jdbcType=DECIMAL}
   </select>
   <select id="selectAllCount" resultType="int">
   	select count(*) from AUTHOR

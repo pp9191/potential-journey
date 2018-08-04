@@ -85,6 +85,8 @@ public class AuthorAction {
 			
 		int rows = Integer.parseInt(req.getParameter("rows"));//pageSize
 		int page = Integer.parseInt(req.getParameter("page"));//pageIndex
+		String sidx = req.getParameter("sidx"); // 字段名
+		String sord = req.getParameter("sord"); //asc OR desc
 		
 		Map<String,Object> map = new HashMap<>();
 		int totalCount = as.getAllCount();
@@ -96,7 +98,7 @@ public class AuthorAction {
 			int start = rows * (page-1);
 			int end = rows * page >= totalCount ? totalCount : rows * page;
 			
-			List<Author> list = as.getAllAuthor(start, end);
+			List<Author> list = as.getAllAuthor(start, end, sidx + " " + sord);
 			map.put("rows", list);//数据
 		}
 //		String jsonStr = JSON.toJSONStringWithDateFormat(map, "yyyy-MM-dd");
